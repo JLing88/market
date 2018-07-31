@@ -46,10 +46,31 @@ class Market
   end
 
   def sell(item, quantity)
-    @vendors.each do |vendor|
-      vendor.inventory.each do |name, amount|
-        
+    result = false
+    inventory_hash = total_inventory
+    inventory_hash.each do |name, amount|
+      if name == item && quantity <= amount
+        result = true
+        decrement_vendor_stock(item, quantity)
+      end
+    end
+    result
+  end
+
+  def decrement_vendor_stock(item, quantity)
+    leftover = 0
+    @vendors.map do |vendor|
+      vendor.inventory.map do |name, amount|
+        if name == item
+
+          quantity -= amount
+          if amount < 0
+            amount == 0
+          end
+          # binding.pry
+        end
       end
     end
   end
+
 end

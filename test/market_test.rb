@@ -125,6 +125,7 @@ class MarketTest < Minitest::Test
     @market.add_vendor(@vendor_3)
 
     refute @market.sell("Peaches", 200)
+    assert @market.sell("Peaches", 70)
 
   end
 end
