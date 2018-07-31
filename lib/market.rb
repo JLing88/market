@@ -62,12 +62,12 @@ class Market
     @vendors.map do |vendor|
       vendor.inventory.map do |name, amount|
         if name == item
-
+          amount -= quantity
           quantity -= amount
-          if amount < 0
-            amount == 0
+          if amount <= 0
+            amount = 0
+            vendor.inventory.delete(item)
           end
-          # binding.pry
         end
       end
     end

@@ -125,7 +125,11 @@ class MarketTest < Minitest::Test
     @market.add_vendor(@vendor_3)
 
     refute @market.sell("Peaches", 200)
+
     assert @market.sell("Peaches", 70)
+
+    assert_equal ({"Tomatoes" => 7}), @vendor_1.inventory
+    assert_equal ({"Peaches" => 30}), @vendor_3.inventory
 
   end
 end
